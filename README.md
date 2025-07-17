@@ -18,8 +18,7 @@ A full-stack application that helps you ship your website idea in seconds.
 
 1. Clone the repository:
 ```bash
-# Better for a slow internet connection
-git clone git@github.com:MohamedM216/website-idea-generator.git
+git clone https://github.com/MohamedM216/website-idea-generator.git
 cd website-idea-generator
 ```
 
