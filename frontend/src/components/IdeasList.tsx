@@ -19,7 +19,11 @@ export default function IdeasList() {
     setIsLoading(true);
     try {
       const data = await fetchIdeas();
-      setIdeas(data);
+      // Sort by newest first
+      const sortedIdeas = data.sort((a: Idea, b: Idea) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      setIdeas(sortedIdeas);
     } catch (err) {
       setError('Failed to load ideas. Please try again.');
     } finally {
@@ -32,7 +36,7 @@ export default function IdeasList() {
   }, []);
 
   if (isLoading) {
-    return <div className="text-center py-8">Loading ideas...</div>;
+    return <div className="text-center py-8">Loading your ideas...</div>;
   }
 
   if (error) {
@@ -40,14 +44,14 @@ export default function IdeasList() {
   }
 
   if (ideas.length === 0) {
-    return <div className="text-center py-8">No ideas generated yet.</div>;
+    return <div className="text-center py-8">No ideas generated yet. Start the magic!</div>;
   }
 
   return (
     <div className="space-y-6">
       {ideas.map((idea) => (
         <div key={idea._id} className="p-6 bg-white rounded-lg shadow-md">
-          <h3 className="text-lg font-medium mb-2">{idea.prompt}</h3>
+          <h3 className="text-lg font-bold mb-2">{idea.prompt}</h3>
           <p className="text-sm text-gray-500 mb-4">
             {new Date(idea.createdAt).toLocaleString()}
           </p>
