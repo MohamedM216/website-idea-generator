@@ -58,6 +58,7 @@ npm run dev
 
 ### If I Had More Time
 
+- Add .env file
 - Add user authentication
 - Integrate with OpenAI API for real section generation
 - Implement section editing functionality

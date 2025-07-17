@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Idea } from './schemas/idea.schema';
@@ -18,9 +18,13 @@ export class IdeasService {
   }
 
   async createIdea(prompt: string): Promise<Idea> {
-    const sections = await this.generateSections(prompt);
-    const newIdea = new this.ideaModel({ prompt, sections });
-    return newIdea.save();
+    try {
+      const sections = await this.generateSections(prompt);
+      const newIdea = new this.ideaModel({ prompt, sections });
+      return await newIdea.save();
+    } catch (err) {
+      throw new InternalServerErrorException('Failed to save idea');
+    }
   }
 
   async getIdeas(): Promise<Idea[]> {
