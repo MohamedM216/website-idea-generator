@@ -1,9 +1,9 @@
 # Website Idea Generator
 
-A full-stack application that helps generate sections for your website idea based on your input.
+A full-stack application that helps you ship your website idea in seconds.
 
 ## Tech Stack
-- Frontend: Next.js (TypeScript)
+- Frontend: Next.js (TypeScript), Tailwind CSS
 - Backend: NestJS (TypeScript)
 - Database: MongoDB
 
